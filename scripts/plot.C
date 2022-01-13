@@ -29,6 +29,7 @@ stn_catalog*   catalog;
 #include "plot_muon_beam_at_vd9.C"
 #include "plot_oot_particles.C"
 #include "plot_decays_in_flight.C"
+#include "plot_muon_scattering.C"
 //-----------------------------------------------------------------------------
 void init() {
   stn_book* book;
@@ -719,6 +720,9 @@ void plot(int Figure, int Print = 0) {
   }
   else if ((Figure >= 4000) and (Figure < 4100)) {
     plot_decays_in_flight(Figure,Print);
+  }
+  else if ((Figure >= 4100) and (Figure < 4200)) {
+    plot_muon_scattering(Figure,Print);
   }
   else {
     printf (" ERROR unknown Figure: %6i\n",Figure);

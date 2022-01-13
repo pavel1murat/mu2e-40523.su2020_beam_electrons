@@ -31,3 +31,33 @@ print("sum                    : ",sum);
 
 the upper limit on the contribution of muon decays in flight is then 1.e-3
 * ------------------------------------------------------------------------------
+* muon scattering in the ST 
+
+  fit the cos(theta) band bins 51:85 (0 - 0.71), approx tan(pitch) > 1 , of the histogram
+
+  su2020.bmum0s5ab0.spmc_ana.0000.hist / murat_SpmcAna / spmc_3/cth_vs_mom_1
+
+  with a flat function in the range 100-110 MeV/c
+  
+#+begin_src maxima :results output
+f : 1.0        ;                                 /* binned log likelihood fit */
+s : float(integrate(f, x,103.5, 105.));
+print("s  (log-likelihood fit): ",s);
+
+f1 : 1.5 ;                                       /* chi2 fit */
+s1 : float(integrate(f1, x,103.5, 105.));
+print("s1 (chi2 fit)          : ", s1);
+
+resampling_factor : 1.e4 ;                       /* the dataset resampled by x1e4 */
+npot              : 4e19 ;
+extinction        : 1e-10;
+ngenerated        : 1.e9 ;
+p_misid           : 1.e-2;
+sum               : s1*(npot/(ngenerated*resampling_factor))*extinction*p_misid;
+print("sum                    : ",sum);
+#+end_src
+
+#+RESULTS:
+: s  (log-likelihood fit):  1.5 
+: s1 (chi2 fit)          :  2.25 
+: sum                    :  9.0e-6 

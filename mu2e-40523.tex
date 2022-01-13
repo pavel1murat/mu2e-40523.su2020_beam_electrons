@@ -165,10 +165,11 @@ the muon stops in the stopping target. They could be split into three categories
   P>100 electrons scattering in the stopping target and producing reconstructed tracks
 \item
   $\mu^- \ra e^- \nu \nu$ decays in flight after the stopping target producing p>100 \MeVc\
-  electrons reconstructed in the detector
+  electrons reconstructed in the detector w/o scattering in the stopping target.
+  The most important are the decays in the DS downstream the stopping target.
 \item
-  beam muons with P > 100 \MeVc\ scattered at a large angle in the ST, reconstructed in the detector
-  and mis-identified as P > 100 \MeVc\ electrons 
+  beam muons with P > 100 \MeVc\ scattered at a large angle in the ST,
+  reconstructed in the detector and mis-identified as P > 100 \MeVc\ electrons.
 \end{itemize}
 
 As it takes a 100 \MeVc\ particle ~100-200 ns to travel from the production target to DS and
@@ -452,6 +453,10 @@ the reconstruction acceptance cuts.
 
 CD3 estimate: \cite{MU2E_4342_MUON_DECAYS_IN_FLIGHT_TDR}
 
+Muons producing 100 MeV/c electrons have momentum above 70 MeV/c and thus arrive into DS early.
+The background from the ``in-time'' protons is rejected by the timing window, need to account for
+out-of-time protons.
+
 \begin{figure}[H]
   \hspace{-0.6in}
   \begin{tikzpicture}
@@ -475,81 +480,53 @@ CD3 estimate: \cite{MU2E_4342_MUON_DECAYS_IN_FLIGHT_TDR}
 \end{figure}
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section {Muon scattering in the ST}
 
-% Figure \ref{fig:cele0s61b1_momentum} and Figure \ref{fig:tid_variables_cele0s61b1} show the
-% reconstructed track momentum distribution and distributions of the track ID variables
-% for {\bf cele0s61b1} dataset.
-% 
-% \begin{figure}[H]
-%   \hspace{-0.8in}
-%   \begin{tikzpicture}
-%     \node[anchor=south west,inner sep=0] at (0,0.) {
-%       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
-%       \makebox[\textwidth][c] {
-%         \includegraphics[width=0.8\textwidth]{figures/pdf/figure_00301_cele0s61b1_su2020_track_ana_trk_10_p}
-%       }
-%     };
-%   \end{tikzpicture}
-%   \caption{
-%     \label{fig:cele0s61b1_momentum}
-%     Track momentum distribution for the \MuToEm\ electrons + one-batch pileup dataset, {\bf cele0s61b1}.
-%     Hashed region shows the benchmark momentum window.
-%   }
-% \end{figure}
-% 
-% \begin{figure}[H]
-%   \hspace{-0.8in}
-%   \begin{tikzpicture}
-%     \node[anchor=south west,inner sep=0] at (0,0.) {
-%       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
-%       % \makebox[\textwidth][c] {
-%       \includegraphics[width=0.64\textwidth]{figures/pdf/figure_00302_cele0s61b1_su2020_track_ana_tid_1_tandip}
-%       % }
-%     };
-%     \node[anchor=south west,inner sep=0] at (10.7,0.) {
-%       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
-%       % \makebox[\textwidth][c] {
-%       \includegraphics[width=0.64\textwidth]{figures/pdf/figure_00303_cele0s61b1_su2020_track_ana_tid_1_d0}
-%       % }
-%     };
-%     \node[anchor=south west,inner sep=0] at (0,-7.) {
-%       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
-%       % \makebox[\textwidth][c] {
-%       \includegraphics[width=0.64\textwidth]{figures/pdf/figure_00304_cele0s61b1_su2020_track_ana_tid_1_trkqual}
-%       % }
-%     };
-%     \node[anchor=south west,inner sep=0] at (10.7,-7.) {
-%       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
-%       % \makebox[\textwidth][c] {
-%       \includegraphics[width=0.64\textwidth]{figures/pdf/figure_00305_cele0s61b1_su2020_track_ana_tid_1_t0err}
-%       % }
-%     };
-%     \node[anchor=south west,inner sep=0] at (0,-14) {
-%       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
-%       % \makebox[\textwidth][c] {
-%       \includegraphics[width=0.64\textwidth]{figures/pdf/figure_00306_cele0s61b1_su2020_track_ana_tid_1_nactive}
-%       % }
-%     };
-%     \node[anchor=south west,inner sep=0] at (10.7,-14.) {
-%       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
-%       % \makebox[\textwidth][c] {
-%       \includegraphics[width=0.64\textwidth]{figures/pdf/figure_00307_cele0s61b1_su2020_track_ana_tid_1_rmax}
-%       % }
-%     };
-%     % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
-%   \end{tikzpicture}
-%   % \captionof{figure} {
-%   \caption{
-%     \label{fig:tid_variables_cele0s61b1}
-%     Distributions of the track ID variables before (open histogram) and after (hashed histogram)
-%     the cut on this variable is applied as the last one for the \MuToEm\ electrons + one-batch
-%     pileup dataset, {\bf cele0s61b1}.
-%   }
-% \end{figure}
+As shown in Figure \ref{fig:03700_bmum0s31b0_vdet_xx09_mom} , muons arriving to DS
+have the momentum distribution extending above 100 MeV/c.
+In this section we estimate background from high momentum muons scattered in the ST,
+reconstructed, and misidentified as electrons.
+
+Muons with momentum $p > 100$  \MeVc\ go through the detector solenoid fast,
+within 200 ns from the proton pulse arrival at the production target and are rejected
+by the delayed timing window. So contributing to the background muons are produced
+by the out-of-pulse protons, suppressed by the beam extinction system. 
+
+\begin{itemize}
+\item 
+  Start from muons with momentum above 100 MeV/c at VD9, resample by $1\times 10^4$. 
+\item
+  for the sake of an estimate, fit the tail above 100 MeV/c with a constant
+\item
+  count muons with 
+\item
+  assume beam extinction of 1e-10 and the probability of the muon misidentification of 0.01. 
+\item
+  The estimated mean contribution is 9e6, or < 1e-5
+\end{itemize}
+
+\begin{figure}[H]
+  \hspace{-0.6in}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.6\textwidth]{figures/pdf/figure_04100_bmum0s5ab0_spmc_1_cth_vs_mom}
+      % }
+    };
+    \node[anchor=south west,inner sep=0] at (10,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.6\textwidth]{figures/pdf/figure_04101_bmum0s5ab0_spmc_1_cth_vs_mom}
+      % }
+    };
+  \end{tikzpicture}
+  \caption{
+    \label{fig:bmum0sb8b0_crt_vs_mom}
+    Electrons from muon decays downstream VD9 entering the detector envelope
+  }
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section {More about beam muons}
@@ -597,6 +574,55 @@ CD3 estimate: \cite{MU2E_4342_MUON_DECAYS_IN_FLIGHT_TDR}
     a... 
   }
 \end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section {Vertical alignment of the beamline}
+
+Antiproton background is quite sensitive to the vertical alignment of the muon beamline.
+The most important here is the relative vertical position of the production target,
+the TS3 collimator, and the stopping target.
+
+Figure \ref{fig:03103_bmum0s31b0_vdet_309_y_vs_x} shows Y:X distributions at VD9 for mu- and mu+ stopped
+in the stopping target. With the default position of the collimator, mu+'s stop at a rate of about 0.4\%
+from mu-'s. The rate is measurable.
+
+As the mu+ spot is offset vertically, the distribution of $\phi_0$  of the reconstructed mu+'s
+should be asymmetric.
+
+The ratio of mu+/mu- rates and the vertical asymmetry of the distribution of reconstructed mu+'s is 
+sensitive to the vertical alignment of the Mu2e beamline, so the measurement of those parameters
+should provide information about the vertical alignment.
+
+The measurement should be performed with the B-field in the DS reduced to about 50\%
+to have the high momentum edge of the $\mu \ra e\nu\nu$ spectrum within the tracker acceptance.
+
+\begin{figure}[H]
+  \hspace{-0.6in}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.6\textwidth]{figures/pdf/figure_03103_bmum0s31b0_vdet_309_y_vs_x}
+      % }
+    };
+    \node[anchor=south west,inner sep=0] at (10,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.6\textwidth]{figures/pdf/figure_03104_bmum0s31b0_vdet_409_y_vs_x}
+      % }
+    };
+  \end{tikzpicture}
+  \caption{
+    \label{fig:03103_bmum0s31b0_vdet_309_y_vs_x}
+    a ... 
+  }
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section {Timing distribution at VD9}
+
 
 
 
