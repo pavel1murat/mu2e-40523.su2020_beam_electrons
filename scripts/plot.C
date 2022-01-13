@@ -10,14 +10,7 @@
 // Figure 361 : electrons P>100 MeV/c : time at VD9
 // Figure 362 : electrons P>100 MeV/c : tan_th at VD9
 // ----------------------------------------
-// ID      : summary histograms
-// 1000+ID : CE
-// 2000+ID : antiprotons
-// 3000+ID : cosmics
-// 4000+ID : DIO
-// 5000+ID : RMC
-// 6000+ID : RPC
-///////////////////////////////////////////////////////////////////////////////
+
 const char* NoteRepo         = "mu2e-40523.su2020_beam_electrons";
 char su2020_HistDir [500]    = "/projects/mu2e/hist/su2020" ;
 char mdc2020_HistDir[500]    = "/projects/mu2e/hist/mdc2020";
@@ -35,6 +28,7 @@ stn_catalog*   catalog;
 #include "plot_stopped_particles.C"
 #include "plot_muon_beam_at_vd9.C"
 #include "plot_oot_particles.C"
+#include "plot_decays_in_flight.C"
 //-----------------------------------------------------------------------------
 void init() {
   stn_book* book;
@@ -722,6 +716,9 @@ void plot(int Figure, int Print = 0) {
   }
   else if ((Figure >= 3700) and (Figure < 3800)) {
     plot_muon_beam_at_vd9(Figure,Print);
+  }
+  else if ((Figure >= 4000) and (Figure < 4100)) {
+    plot_decays_in_flight(Figure,Print);
   }
   else {
     printf (" ERROR unknown Figure: %6i\n",Figure);
