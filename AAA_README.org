@@ -2,7 +2,7 @@
 * export BIBINPUTS=$PWD:/projects/mu2e/bibliography
 * note: file:tmp/mu2e-40523.pdf
 * ------------------------------------------------------------------------------
-* normalization of timing histogram                                          
+* normalization of the timing histogram                                          
 ** beam flash : dsid: su2020.flsh0                                         
    - flsh0: 2.5e6 POT , see https://github.com/Mu2e/su2020/blob/master/flsh0/init_project.py#L32-L35
    - to normalize to 1.6e7 POT, need to scale up by a factor of (1.6e7/2.5e6)
