@@ -7,11 +7,13 @@
 // Figure 3101 : stopped and total particle momentum at VD7
 // Figure 3103 : X:Y at at VD9 for stopped mu-
 // Figure 3104 : X:Y at at VD9 for stopped mu+
-//
+// Figure 3105 : X:Y at a stop point for stopped mu-
+// Figure 3106 : X:Y at a stop point for stopped mu+
+// Figure 3150 : time distribution (combined)
 ///////////////////////////////////////////////////////////////////////////////
 
 //-----------------------------------------------------------------------------
-void plot_stopped_particles(int Figure, int Print = 0) {
+void plot_stopped_particles(int Figure, int Print, const char* Format) {
 //-----------------------------------------------------------------------------
 // Figure 3100 : beam particle momentum at VD9
 //-----------------------------------------------------------------------------
@@ -70,7 +72,7 @@ void plot_stopped_particles(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s31b0_vdet_xx09_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -134,7 +136,7 @@ void plot_stopped_particles(int Figure, int Print = 0) {
     p.fCanvasName          = Form("Figure_%04i",Figure);
     p.fName                = Form("figure_%05i_bmum0s31b0_vdet_x309_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -172,7 +174,7 @@ void plot_stopped_particles(int Figure, int Print = 0) {
     p.fCanvasSizeY         =  950;
     p.fName                = Form("figure_%05i_bmum0s31b0_vdet_309_y_vs_x",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -210,8 +212,307 @@ void plot_stopped_particles(int Figure, int Print = 0) {
     p.fCanvasSizeY         =  950;
     p.fName                = Form("figure_%05i_bmum0s31b0_vdet_409_y_vs_x",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
+    if (Print > 0) p.print();
+  }
+//-----------------------------------------------------------------------------
+// Figure 3105 : X:Y stop points stopped mu-
+//-----------------------------------------------------------------------------
+  if (Figure == 3105) {
+    plot_data_t          p(1);
+    
+    const char* dsid    = "su2020.bmum0s31b0";   // stopped in the ST
+    
+    p.hd[0]                = hist_data_t(catalog,"su2020",dsid,"spmc_ana.0000","murat_SpmcAna","simp_603/y_vs_x");
+    p.hd[0].fNewName       = "tgt_mum";
+    p.hd[0].fRebin         =  1;
+    p.hd[0].fLabel         = "TGT mu- stops"; // "mom";
+    p.hd[0].fLabelFontSize = 0.04;
+    p.hd[0].fMarkerColor   = kBlue+2;
+    p.hd[0].fLineColor     = kBlue+2;
+    p.hd[0].fFillStyle     = 0;
+    p.hd[0].fFillColor     = kBlue+1;
+    p.hd[0].fDrawOpt       = "col";
+    p.hd[0].fMarkerStyle   = 20;
+    p.hd[0].fMarkerSize    = 0.3;
+
+    p.fYLogScale           =  0;
+    // p.fXMin                =  0.;
+    // p.fXMax                = 200.;
+    p.fXAxisTitle          = "X, mm";
+    p.fYTitFormat          = "";
+    p.fLabel               = "mu- stop coordinates";
+    p.fLabelXMin           = 0.15;
+    p.fLegendXMin          = 0.15; p.fLegendXMax = 0.45; p.fLegendYMin = 0.7; p.fLegendYMax = 0.75;
+    p.fCanvasName          = Form("Figure_%04i",Figure);
+    p.fCanvasSizeX         =  900;
+    p.fCanvasSizeY         =  930;
+    p.fName                = Form("figure_%05i_bmum0s31b0_simp_603_y_vs_x",Figure);
+
+    plot_hist_1d(&p,-1,Format);
+    // add whatever else you want
+    if (Print > 0) p.print();
+  }
+//-----------------------------------------------------------------------------
+// Figure 3106 : X:Y stop points stopped mu+
+//-----------------------------------------------------------------------------
+  if (Figure == 3106) {
+    plot_data_t          p(1);
+    
+    const char* dsid    = "su2020.bmum0s31b0";   // stopped in the ST
+    
+    p.hd[0]                = hist_data_t(catalog,"su2020",dsid,"spmc_ana.0000","murat_SpmcAna","simp_604/y_vs_x");
+    p.hd[0].fNewName       = "tgt_muplus";
+    p.hd[0].fRebin         =  1;
+    p.hd[0].fLabel         = "TGT mu+ stops"; // "mom";
+    p.hd[0].fLabelFontSize = 0.04;
+    p.hd[0].fMarkerColor   = kBlue+2;
+    p.hd[0].fLineColor     = kBlue+2;
+    p.hd[0].fFillStyle     = 0;
+    p.hd[0].fFillColor     = kBlue+1;
+    p.hd[0].fDrawOpt       = "col";
+    p.hd[0].fMarkerStyle   = 20;
+    p.hd[0].fMarkerSize    = 0.3;
+
+    p.fYLogScale           =  0;
+    // p.fXMin                =  0.;
+    // p.fXMax                = 200.;
+    p.fXAxisTitle          = "X, mm";
+    p.fYTitFormat          = "";
+    p.fLabel               = "mu+ stop coordinates";
+    p.fLabelXMin           = 0.15;
+    p.fLegendXMin          = 0.15; p.fLegendXMax = 0.45; p.fLegendYMin = 0.7; p.fLegendYMax = 0.75;
+    p.fCanvasName          = Form("Figure_%04i",Figure);
+    p.fCanvasSizeX         =  900;
+    p.fCanvasSizeY         =  930;
+    p.fName                = Form("figure_%05i_bmum0s31b0_simp_604_y_vs_x",Figure);
+
+    plot_hist_1d(&p,-1,Format);
+    // add whatever else you want
+    if (Print > 0) p.print();
+  }
+//-----------------------------------------------------------------------------
+// Figure 3106 : X:Y stop points stopped mu+
+//-----------------------------------------------------------------------------
+  if (Figure == 3106) {
+    plot_data_t          p(1);
+    
+    const char* dsid    = "su2020.bmum0s31b0";   // stopped in the ST
+    
+    p.hd[0]                = hist_data_t(catalog,"su2020",dsid,"spmc_ana.0000","murat_SpmcAna","simp_604/y_vs_x");
+    p.hd[0].fNewName       = "tgt_muplus";
+    p.hd[0].fRebin         =  1;
+    p.hd[0].fLabel         = "TGT mu+ stops"; // "mom";
+    p.hd[0].fLabelFontSize = 0.04;
+    p.hd[0].fMarkerColor   = kBlue+2;
+    p.hd[0].fLineColor     = kBlue+2;
+    p.hd[0].fFillStyle     = 0;
+    p.hd[0].fFillColor     = kBlue+1;
+    p.hd[0].fDrawOpt       = "col";
+    p.hd[0].fMarkerStyle   = 20;
+    p.hd[0].fMarkerSize    = 0.3;
+
+    p.fYLogScale           = 0;
+    p.fStats               = 0;
+    // p.fXMin                =  0.;
+    // p.fXMax                = 200.;
+    p.fXAxisTitle          = "X, mm";
+    p.fYTitFormat          = "";
+    p.fLabel               = "mu+ stop coordinates";
+    p.fLabelXMin           = 0.15;
+    p.fLegendXMin          = 0.15; p.fLegendXMax = 0.45; p.fLegendYMin = 0.7; p.fLegendYMax = 0.75;
+    p.fCanvasName          = Form("Figure_%04i",Figure);
+    p.fCanvasSizeX         =  900;
+    p.fCanvasSizeY         =  930;
+    p.fName                = Form("figure_%05i_bmum0s31b0_simp_604_y_vs_x",Figure);
+
+    plot_hist_1d(&p,-1,Format);
+    // add whatever else you want
+    if (Print > 0) p.print();
+  }
+//-----------------------------------------------------------------------------
+// Figure 3150 : proton pulse timing
+//-----------------------------------------------------------------------------
+  if (Figure == 3150) {
+    plot_data_t          p(1);
+    
+    const char* dsid    = "su2020.flsh0s36b0";   // beam flash, 2.5e6, at VD9 with the smeared timing
+    const char* dsid2   = "su2020.bmum0s3cb0";   // muon beam,  1e9  , at VD9 with the smeared timing
+
+    int npulses = 2;
+    TH1F* h_ppt(nullptr);
+  
+    make_proton_pulse_hist(h_ppt,2);
+    p.hd[0]                = hist_data_t(h_ppt);
+    p.hd[0].fNewName       = "";
+    p.hd[0].fLineColor     = kRed+2;
+    p.hd[0].fFillStyle     = 3003;
+    p.hd[0].fFillColor     = kRed+2;
+    p.hd[0].fMarkerStyle   = 20;
+    p.hd[0].fMarkerSize    = 0.3;
+    p.hd[0].fMarkerColor   = kRed+2;
+    p.hd[0].fDrawOpt       = "hist";
+    p.hd[0].fOptStat       = 0;
+    p.hd[0].fStats         = 0;
+    p.hd[0].fLumiSF        = 1.6e7;   // integral over pulse was set to 1.
+
+    p.fYLogScale           =  0;
+    p.fXMin                =  -300.;
+    p.fXMax                = 2000.;
+    p.fYMax                = 6.e5;
+    p.fXAxisTitle          = "time, ns";
+    p.fYTitFormat          = "";
+    p.fLabel               = "time at VD9";
+    p.fStats               = 0;
+    p.fOptStat             = 0;
+    p.fLabelXMin           = 0.15;
+    p.fLegendXMin          = 0.15; p.fLegendXMax = 0.45; p.fLegendYMin = 0.7; p.fLegendYMax = 0.75;
+    p.fCanvasName          = Form("Figure_%04i",Figure);
+    p.fName                = Form("figure_%05i_proton_pulse_ime",Figure);
+
+    plot_hist_1d(&p,-1,Format);
+
+    if (Print > 0) p.print();
+  }
+//-----------------------------------------------------------------------------
+// Figure 3160 : combined timing distribution
+//-----------------------------------------------------------------------------
+  if (Figure == 3160) {
+    plot_data_t          p(5);
+    
+    const char* dsid    = "su2020.flsh0s36b0";   // beam flash, 2.5e6, at VD9 with the smeared timing
+    const char* dsid2   = "su2020.bmum0s3cb0";   // muon beam,  1e9  , at VD9 with the smeared timing
+
+    int npulses = 2;
+    TH1F* h_ppt(nullptr);
+    make_proton_pulse_hist(h_ppt,2,1.6e7);
+    h_ppt->Rebin(5);
+    p.hd[0]                = hist_data_t(h_ppt);
+    p.hd[0].fNewName       = "";
+    p.hd[0].fLabel         = "proton pulse at production target";
+    p.hd[0].fLineColor     = kGray+2;
+    p.hd[0].fLineWidth     = 1;
+    p.hd[0].fFillStyle     = 3004;
+    p.hd[0].fDrawOpt       = "hist";
+    p.hd[0].fFillColor     = kGray+2;
+    p.hd[0].fMarkerStyle   = 20;
+    p.hd[0].fMarkerSize    = 0.3;
+    p.hd[0].fMarkerColor   = kGray+2;
+    p.hd[0].fOptStat       = 0;
+    p.hd[0].fStats         = 0;
+
+    TH1F* h_bf(nullptr);
+    make_beam_flash_hist(h_bf,-1,1);
+    p.hd[1]                = hist_data_t(h_bf);
+    p.hd[1].fNewName       = "flash";
+    p.hd[1].fRebin         =  1;
+    p.hd[1].fLabel         = "beam flash at stopping target (#times 5)";
+    p.hd[1].fLabelFontSize = 0.04;
+    p.hd[1].fMarkerColor   = kBlue-9;
+    p.hd[1].fLineColor     = kBlue-9;
+    p.hd[1].fFillStyle     = 3005;
+    p.hd[1].fFillColor     = kBlue-9;
+    p.hd[1].fDrawOpt       = "hist";
+    p.hd[1].fMarkerStyle   = 20;
+    p.hd[1].fMarkerSize    = 0.3;
+//-----------------------------------------------------------------------------
+// flsh0 simulation used 2.5e6 POT, renormalize to the low lumi mode pulse
+//-----------------------------------------------------------------------------
+    p.hd[1].fLumiSF        = (1.6e7/2.5e6)*5;
+    p.hd[1].fStats         = 0;
+
+    TH1F* h_pi(nullptr);;
+    make_pion_vd9_hist(h_pi,-1,1);
+    p.hd[2]                = hist_data_t(h_pi);
+    // p.hd[2]                = hist_data_t(catalog,"su2020",dsid2,"spmc_ana.0000","murat_SpmcAna","vdet_1009/time");
+    p.hd[2].fNewName       = "pi-";
+    p.hd[2].fRebin         =  1;
+    p.hd[2].fLabel         = "#pi^{-} at stopping target (#times 100,000)";
+    p.hd[2].fLabelFontSize = 0.04;
+    p.hd[2].fMarkerColor   = kBlue+2;
+    p.hd[2].fLineColor     = kBlue+2;
+    p.hd[2].fLineWidth     = 2;
+    p.hd[2].fFillStyle     = 0;
+    p.hd[2].fFillColor     = kBlue+2;
+    p.hd[2].fDrawOpt       = "hist";
+    p.hd[2].fMarkerStyle   = 20;
+    p.hd[2].fMarkerSize    = 0.3;
+    // pions are scaled up by a factor 20,000
+    p.hd[2].fLumiSF        = (100/62.5)*1e3;
+    p.hd[2].fOptStat       = 0;
+    p.hd[2].fStats         = 0;
+
+    TH1F* h_mu(nullptr);;
+    make_muon_vd9_hist(h_mu,-1,1);
+    p.hd[3]                = hist_data_t(h_mu);
+    // p.hd[3]                = hist_data_t(catalog,"su2020",dsid2,"spmc_ana.0000","murat_SpmcAna","vdet_309/time");
+    p.hd[3].fNewName       = "mu-";
+    p.hd[3].fRebin         =  1;
+    p.hd[3].fLabel         = "#mu^{-} at stopping target (#times 400)";
+    p.hd[3].fLabelFontSize = 0.04;
+    p.hd[3].fMarkerColor   = kRed+2;
+    p.hd[3].fLineColor     = kRed+2;
+    p.hd[3].fLineWidth     = 2;
+    p.hd[3].fFillStyle     = 0;
+    p.hd[3].fFillColor     = kRed+2;
+    p.hd[3].fDrawOpt       = "hist";
+    p.hd[3].fMarkerStyle   = 20;
+    p.hd[3].fMarkerSize    = 0.3;
+    p.hd[3].fOptStat       = 0;
+    p.hd[3].fStats         = 0;
+    p.hd[3].fLumiSF        = (400./62.5);
+
+    TH1F* h_bmdt(nullptr);
+    make_bound_muon_decay_hist(h_bmdt,-1,1);
+    p.hd[4]                = hist_data_t(h_bmdt);
+    p.hd[4].fLabel         = "#mu^{-} decays at stopping target (#times 400)";
+    p.hd[4].fDrawOpt       = "hist";
+    p.hd[4].fLineColor     = kRed+2;
+    p.hd[4].fFillStyle     = 3002;
+    p.hd[4].fFillColor     = kRed+2;
+    p.hd[4].fOptStat       = 0;
+    p.hd[4].fNewName       = "";
+    p.hd[4].fStats         = 0;
+//-----------------------------------------------------------------------------
+// 62.5 = 1e9(NPOT generated) / 1.6e7(POT/pulse),
+// so , to be normalizes to the proton pulse, the muon distribution should
+// be scaled down by 62.5
+// in fact, to be visible, muons scaled up by x100
+//-----------------------------------------------------------------------------
+    p.hd[4].fLumiSF        = 2.76e7;
+    
+    p.fYLogScale           =  0;
+    p.fXMin                =  -300.;
+    p.fXMax                = 2000.;
+    p.fYMin                = 1.e-2;
+    p.fYMax                = 3.e6;
+    p.fXAxisTitle          = "time, ns";
+    p.fYTitFormat          = "";
+    p.fLabel               = "Mu2e simulation, 1.6 #times 10^{7} protons / pulse";
+    p.fStats               = 0;
+    p.fOptStat             = 0;
+    p.fLabelXMin           = 0.15;
+    p.fLegendXMin          = 0.35; p.fLegendXMax = 0.65; p.fLegendYMin = 0.5; p.fLegendYMax = 0.75;
+    p.fCanvasName          = Form("Figure_%04i",Figure);
+    p.fCanvasSizeX         = 1700;
+    p.fCanvasSizeY         = 550;
+    p.fName                = Form("figure_%05i_flsh0s36b0_vdet_9_time",Figure);
+
+    plot_hist_1d(&p,-1,Format);
+
+    TPaveLabel* pave = new TPaveLabel(640.,1e3,1650,500e3,"signal window");
+    pave->SetBorderSize(1);
+    pave->SetLineColor(1); //kYellow-3);
+    pave->SetFillColor(kYellow-3);
+    pave->SetTextFont(42);
+    pave->SetTextSize(0.3);
+    pave->SetFillStyle(3003);
+    pave->Draw();
+
+    p.fCanvas->Modified();
+    p.fCanvas->Update();
+    
     if (Print > 0) p.print();
   }
 }

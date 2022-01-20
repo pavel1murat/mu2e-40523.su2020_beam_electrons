@@ -5,7 +5,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 //-----------------------------------------------------------------------------
-void plot_muon_beam_at_vd9(int Figure, int Print = 0) {
+void plot_muon_beam_at_vd9(int Figure, int Print, const char* Format) {
 //-----------------------------------------------------------------------------
 // Figure 3700 : beam particle momentum at VD9
 //-----------------------------------------------------------------------------
@@ -64,7 +64,7 @@ void plot_muon_beam_at_vd9(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s37b0_vdet_xx09_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }

@@ -25,6 +25,8 @@ stn_catalog*   catalog;
 
 #include "su2020/ana/scripts/init_su2020_datasets.C"
 
+#include "plot_proton_pulse_shape.C"
+#include "plot_bound_muon_decay_time.C"
 #include "plot_stopped_particles.C"
 #include "plot_muon_beam_at_vd9.C"
 #include "plot_oot_particles.C"
@@ -57,7 +59,7 @@ void init() {
 }
 
 //-----------------------------------------------------------------------------
-void plot(int Figure, int Print = 0) {
+void plot(int Figure, int Print = 0, const char* Format = "eps") {
   init();
 //-----------------------------------------------------------------------------
 // Figure 160 : 
@@ -105,7 +107,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s16b0_vdet_102_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -147,7 +149,7 @@ void plot(int Figure, int Print = 0) {
     p.fYLogScale     =  1;
     p.fXMin          =  0.;
     p.fXMax          = 200.;
-    p.fXAxisTitle    = "P_{e}, MeV/c";
+    p.fXAxisTitle    = "time, ns";
     p.fYTitFormat    = "";
     p.fLabel         = "P>100 MeV/c electrons produced upstream TS31 coll";
     p.fLabelXMin     = 0.15;
@@ -155,7 +157,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s16b0_vdet_102_time",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -205,7 +207,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s26b0_vdet_106_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -255,7 +257,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s26b0_vdet_106_time",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -319,7 +321,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s36b0_vdet_109_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -383,7 +385,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s36b0_vdet_109_time",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -447,7 +449,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s36b0_vdet_109_tan_th",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -485,7 +487,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s56b0_spmc_1_cth_vs_mom_1",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -523,7 +525,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s58b0_spmc_1_cth_vs_mom_1",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -561,7 +563,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s59b0_spmc_1_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -633,7 +635,7 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s59b0_spmc_1_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
@@ -705,24 +707,24 @@ void plot(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s59b0_spmc_1_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
   else if ((Figure >= 3100) and (Figure < 3200)) {
-    plot_stopped_particles(Figure,Print);
+    plot_stopped_particles(Figure,Print,Format);
   }
   else if ((Figure >= 3200) and (Figure < 3300)) {
-    plot_oot_particles(Figure,Print);
+    plot_oot_particles(Figure,Print,Format);
   }
   else if ((Figure >= 3700) and (Figure < 3800)) {
-    plot_muon_beam_at_vd9(Figure,Print);
+    plot_muon_beam_at_vd9(Figure,Print,Format);
   }
   else if ((Figure >= 4000) and (Figure < 4100)) {
-    plot_decays_in_flight(Figure,Print);
+    plot_decays_in_flight(Figure,Print,Format);
   }
   else if ((Figure >= 4100) and (Figure < 4200)) {
-    plot_muon_scattering(Figure,Print);
+    plot_muon_scattering(Figure,Print,Format);
   }
   else {
     printf (" ERROR unknown Figure: %6i\n",Figure);

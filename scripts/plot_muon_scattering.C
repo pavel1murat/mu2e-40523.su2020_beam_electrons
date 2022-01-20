@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 //-----------------------------------------------------------------------------
-void plot_muon_scattering(int Figure, int Print = 0) {
+void plot_muon_scattering(int Figure, int Print, const char* Format) {
 //-----------------------------------------------------------------------------
 // Figure 4100 : beam particle momentum at VD10
 //-----------------------------------------------------------------------------
@@ -41,7 +41,7 @@ void plot_muon_scattering(int Figure, int Print = 0) {
     p.fCanvasName          = Form("Figure_%04i",Figure);
     p.fName                = Form("figure_%05i_bmum0s5ab0_spmc_1_cth_vs_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1, Format);
     // add whatever else you want
     TPave* pave = new TPave(100,0,200,0.707);
     pave->SetBorderSize(1);
@@ -86,7 +86,7 @@ void plot_muon_scattering(int Figure, int Print = 0) {
     p.fCanvasName          = Form("Figure_%04i",Figure);
     p.fName                = Form("figure_%05i_bmum0s5ab0_spmc_1_cth_vs_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     
     p.hd[0].fHist->Fit("pol0","c","pe",100,110);

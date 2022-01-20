@@ -12,11 +12,14 @@ pdfs := $(patsubst figures/eps/%.eps, figures/pdf/%.pdf,  $(wildcard figures/eps
 
 pngs := $(patsubst figures/eps/%.eps, figures/png/%.png, $(wildcard figures/eps/*.eps ))
 
+figure_03160: figures/eps/figure_03160_flsh0s36b0_vdet_9_time.eps 
+	convert -density 400 -depth 8 -quality 85 -trim $? figures/png/figure_03160_flsh0s36b0_vdet_9_time.png 
+
 figures/pdf/%.pdf: figures/eps/%.eps
 	ps2pdf -dEPSCrop $? $@
 
 figures/png/%.png: figures/eps/%.eps
-	convert -density 400 -depth 8 -quality 85  $? $@
+	convert -density 400 -depth 8 -quality 85 -trim $? $@
 
 pdf: $(pdfs) 
 # 	echo $?

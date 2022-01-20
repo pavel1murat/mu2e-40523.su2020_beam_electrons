@@ -5,7 +5,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 //-----------------------------------------------------------------------------
-void plot_oot_particles(int Figure, int Print = 0) {
+void plot_oot_particles(int Figure, int Print, const char* Format) {
 //-----------------------------------------------------------------------------
 // Figure 3200 : beam particle momentum at VD10
 //-----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ void plot_oot_particles(int Figure, int Print = 0) {
     p.fCanvasName    = Form("Figure_%04i",Figure);
     p.fName          = Form("figure_%05i_bmum0s32b0_vdet_0310_mom",Figure);
 
-    plot_hist_1d(&p,-1);
+    plot_hist_1d(&p,-1,Format);
     // add whatever else you want
     if (Print > 0) p.print();
   }
