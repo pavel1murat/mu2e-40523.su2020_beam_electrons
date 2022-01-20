@@ -473,7 +473,7 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
 //-----------------------------------------------------------------------------
 // bmum0 generation used 1e9 POT ; 1e9/1.6e7 = 62.5
 // so to normalize a bmum0 histogram to 1.6e7 POT, need to scale it by 1/62.5
-// for presentatioin purposes, scale muon histogram by x400
+// for presentation purposes, scale muon histogram by x400
 //-----------------------------------------------------------------------------
     p.hd[3].fLumiSF        = (400./62.5);
 
@@ -491,7 +491,7 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
 //-----------------------------------------------------------------------------
 // stopped muons
 // h_bmdt is normalized to an integral of one
-// normalization to the proton pulse: 1.6e7*1.59e-3
+// normalization to the proton pulse: 1.6e7*1.59e-3 (plus scale up by x400 for presentation)
 //-----------------------------------------------------------------------------
     p.hd[4].fLumiSF        = 2.54e4*400;
     
