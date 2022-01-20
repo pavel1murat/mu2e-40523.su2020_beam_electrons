@@ -392,8 +392,8 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     p.hd[0].fNewName       = "";
     p.hd[0].fLabel         = "proton pulse at production target";
     p.hd[0].fLineColor     = kGray+2;
-    p.hd[0].fLineWidth     = 1;
-    p.hd[0].fFillStyle     = 3004;
+    p.hd[0].fLineWidth     = 2;
+    p.hd[0].fFillStyle     = 3013;
     p.hd[0].fDrawOpt       = "hist";
     p.hd[0].fFillColor     = kGray+2;
     p.hd[0].fMarkerStyle   = 20;
@@ -401,6 +401,11 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     p.hd[0].fMarkerColor   = kGray+2;
     p.hd[0].fOptStat       = 0;
     p.hd[0].fStats         = 0;
+    p.hd[0].fHist->GetXaxis()->SetLabelSize(0.05);
+    p.hd[0].fHist->GetXaxis()->SetTitleSize(0.05);
+    p.hd[0].fHist->GetYaxis()->SetLabelSize(0.05);
+    p.hd[0].fHist->GetYaxis()->SetTitleSize(0.05);
+    p.hd[0].fHist->GetYaxis()->SetTitleOffset(0.6);
 
     TH1F* h_bf(nullptr);
     make_beam_flash_hist(h_bf,-1,1);
@@ -411,13 +416,15 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     p.hd[1].fLabelFontSize = 0.04;
     p.hd[1].fMarkerColor   = kBlue-9;
     p.hd[1].fLineColor     = kBlue-9;
-    p.hd[1].fFillStyle     = 3005;
+    p.hd[1].fLineWidth     = 2;
+    p.hd[1].fFillStyle     = 3013;
     p.hd[1].fFillColor     = kBlue-9;
     p.hd[1].fDrawOpt       = "hist";
     p.hd[1].fMarkerStyle   = 20;
     p.hd[1].fMarkerSize    = 0.3;
 //-----------------------------------------------------------------------------
 // flsh0 simulation used 2.5e6 POT, renormalize to the low lumi mode pulse
+// scale up by x5 for presentation purposes
 //-----------------------------------------------------------------------------
     p.hd[1].fLumiSF        = (1.6e7/2.5e6)*5;
     p.hd[1].fStats         = 0;
@@ -438,19 +445,21 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     p.hd[2].fDrawOpt       = "hist";
     p.hd[2].fMarkerStyle   = 20;
     p.hd[2].fMarkerSize    = 0.3;
-    // pions are scaled up by a factor 20,000
-    p.hd[2].fLumiSF        = (100/62.5)*1e3;
     p.hd[2].fOptStat       = 0;
     p.hd[2].fStats         = 0;
+//-----------------------------------------------------------------------------
+// pion distribution is normalized to 1.6e7 and additionally scaled up by a factor 100,000 
+//-----------------------------------------------------------------------------
+    p.hd[2].fLumiSF        = (1./62.5)*1e5;
 
-    TH1F* h_mu(nullptr);;
+    TH1F* h_mu(nullptr);
     make_muon_vd9_hist(h_mu,-1,1);
     p.hd[3]                = hist_data_t(h_mu);
     // p.hd[3]                = hist_data_t(catalog,"su2020",dsid2,"spmc_ana.0000","murat_SpmcAna","vdet_309/time");
     p.hd[3].fNewName       = "mu-";
     p.hd[3].fRebin         =  1;
     p.hd[3].fLabel         = "#mu^{-} at stopping target (#times 400)";
-    p.hd[3].fLabelFontSize = 0.04;
+    p.hd[3].fLabelFontSize = 0.05;
     p.hd[3].fMarkerColor   = kRed+2;
     p.hd[3].fLineColor     = kRed+2;
     p.hd[3].fLineWidth     = 2;
@@ -461,12 +470,17 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     p.hd[3].fMarkerSize    = 0.3;
     p.hd[3].fOptStat       = 0;
     p.hd[3].fStats         = 0;
+//-----------------------------------------------------------------------------
+// bmum0 generation used 1e9 POT ; 1e9/1.6e7 = 62.5
+// so to normalize a bmum0 histogram to 1.6e7 POT, need to scale it by 1/62.5
+// for presentatioin purposes, scale muon histogram by x400
+//-----------------------------------------------------------------------------
     p.hd[3].fLumiSF        = (400./62.5);
 
     TH1F* h_bmdt(nullptr);
-    make_bound_muon_decay_hist(h_bmdt,-1,1);
+    make_bound_muon_decay_hist(h_bmdt,1000000,-1,1);
     p.hd[4]                = hist_data_t(h_bmdt);
-    p.hd[4].fLabel         = "#mu^{-} decays at stopping target (#times 400)";
+    p.hd[4].fLabel         = "#mu^{-} decays/captures at stopping target (#times 400)";
     p.hd[4].fDrawOpt       = "hist";
     p.hd[4].fLineColor     = kRed+2;
     p.hd[4].fFillStyle     = 3002;
@@ -475,12 +489,11 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     p.hd[4].fNewName       = "";
     p.hd[4].fStats         = 0;
 //-----------------------------------------------------------------------------
-// 62.5 = 1e9(NPOT generated) / 1.6e7(POT/pulse),
-// so , to be normalizes to the proton pulse, the muon distribution should
-// be scaled down by 62.5
-// in fact, to be visible, muons scaled up by x100
+// stopped muons
+// h_bmdt is normalized to an integral of one
+// normalization to the proton pulse: 1.6e7*1.59e-3
 //-----------------------------------------------------------------------------
-    p.hd[4].fLumiSF        = 2.76e7;
+    p.hd[4].fLumiSF        = 2.54e4*400;
     
     p.fYLogScale           =  0;
     p.fXMin                =  -300.;
@@ -488,12 +501,13 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     p.fYMin                = 1.e-2;
     p.fYMax                = 3.e6;
     p.fXAxisTitle          = "time, ns";
-    p.fYTitFormat          = "";
+    p.fYTitFormat          = "N / 10 ns";
     p.fLabel               = "Mu2e simulation, 1.6 #times 10^{7} protons / pulse";
+    p.fLabelFontSize       = 0.045;
     p.fStats               = 0;
     p.fOptStat             = 0;
     p.fLabelXMin           = 0.15;
-    p.fLegendXMin          = 0.35; p.fLegendXMax = 0.65; p.fLegendYMin = 0.5; p.fLegendYMax = 0.75;
+    p.fLegendXMin          = 0.35; p.fLegendXMax = 0.65; p.fLegendYMin = 0.5; p.fLegendYMax = 0.80;
     p.fCanvasName          = Form("Figure_%04i",Figure);
     p.fCanvasSizeX         = 1700;
     p.fCanvasSizeY         = 550;
@@ -506,7 +520,7 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     pave->SetLineColor(1); //kYellow-3);
     pave->SetFillColor(kYellow-3);
     pave->SetTextFont(42);
-    pave->SetTextSize(0.3);
+    pave->SetTextSize(0.45);
     pave->SetFillStyle(3003);
     pave->Draw();
 

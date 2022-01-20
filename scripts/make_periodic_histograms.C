@@ -169,7 +169,7 @@ int make_pion_vd9_hist(TH1F*& Hist, int FirstPulse = 0, int LastPulse = 0) {
 };
 
 //-----------------------------------------------------------------------------
-int make_bound_muon_decay_hist(TH1F*& Hist, int FirstPulse = 0, int LastPulse = 0) {
+int make_bound_muon_decay_hist(TH1F*& Hist, int NEvents = 1000000, int FirstPulse = 0, int LastPulse = 0) {
   double x[10000], y[10000];
   int nb;
   float tmin, tmax; 
@@ -195,10 +195,9 @@ int make_bound_muon_decay_hist(TH1F*& Hist, int FirstPulse = 0, int LastPulse = 
 
   double tdecay = rn3.Exp(tau);
 
-  int nev = 1000000;
-  double wt = 1./nev;
+  double wt = 1./NEvents;
   
-  for (int i=0; i<nev; i++) {
+  for (int i=0; i<NEvents; i++) {
     t0     = h_muon_stop_time->GetRandom();
     tdecay = rn3.Exp(tau);
     t1     = t0+tdecay;

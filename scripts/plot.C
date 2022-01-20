@@ -25,8 +25,8 @@ stn_catalog*   catalog;
 
 #include "su2020/ana/scripts/init_su2020_datasets.C"
 
+#include "make_periodic_histograms.C"
 #include "plot_proton_pulse_shape.C"
-#include "plot_bound_muon_decay_time.C"
 #include "plot_stopped_particles.C"
 #include "plot_muon_beam_at_vd9.C"
 #include "plot_oot_particles.C"
