@@ -4,33 +4,28 @@
 * ------------------------------------------------------------------------------
 * normalization of timing histogram                                          
 ** beam flash : dsid: su2020.flsh0                                         
-   flsh0: 2.5e6 POT , see https://github.com/Mu2e/su2020/blob/master/flsh0/init_project.py#L32-L35
-
-   to normalize to 1.6e7 POT, need to scale up by a factor of (1.6e7/2.5e6)
-
-   to be compared to:
-
+   - flsh0: 2.5e6 POT , see https://github.com/Mu2e/su2020/blob/master/flsh0/init_project.py#L32-L35
+   - to normalize to 1.6e7 POT, need to scale up by a factor of (1.6e7/2.5e6)
+   - to be compared to:
    https://github.com/pavel1murat/mu2e-40523.su2020_beam_electrons/blob/main/scripts/plot_stopped_particles.C#L429
 ** muons and pions at VD9:                                    
-   bmum0 (regenerated and saved as sim.murat.*) corresponds to 1e9 POT
-   one can check sim.murat.bmum0s11b0.su2020.art: 
+   - bmum0 (regenerated and saved as sim.murat.*) corresponds to 1e9 POT
+   - one can check sim.murat.bmum0s11b0.su2020.art: 
 #+begin_code bash
 for f in `samweb list-files 'dh.dataset sim.murat.bmum0s11b0.su2020.art'` ; do
 samweb get-metadata $f | grep dh.gencount ;
 done  | awk '{n+=$2} END{print n}'
 #+end_code
 
-  to normalize to the mean proton pulse aand scale up by x400: scale by 1.6e7/1e9 = (1./62.5)
-
-  to be compared to:
-  muons: https://github.com/pavel1murat/mu2e-40523.su2020_beam_electrons/blob/main/scripts/plot_stopped_particles.C#L478
-  pions: https://github.com/pavel1murat/mu2e-40523.su2020_beam_electrons/blob/main/scripts/plot_stopped_particles.C#L453
+  - to normalize to the mean proton pulse aand scale up by x400: scale by 1.6e7/1e9 = (1./62.5)
+  - to be compared to:
+    - muons: https://github.com/pavel1murat/mu2e-40523.su2020_beam_electrons/blob/main/scripts/plot_stopped_particles.C#L478
+    - pions: https://github.com/pavel1murat/mu2e-40523.su2020_beam_electrons/blob/main/scripts/plot_stopped_particles.C#L453
 ** stopped muon decays :
-   the histogram produced by
-   is normalized to unit integral
-   normalization: 1.6e7 (protons per pulse)*1.59e-3(stopped muon rate)*400 (presentation factor)
-   to be compared to:
-   https://github.com/pavel1murat/mu2e-40523.su2020_beam_electrons/blob/main/scripts/plot_stopped_particles.C#L494
+   - the histogram produced by [[https://github.com/pavel1murat/mu2e-40523.su2020_beam_electrons/blob/main/scripts/make_periodic_histograms.C#L172][make_periodic_histograms.C]] is normalized to the unit integral
+   - normalization: 1.6e7 (protons per pulse)*1.59e-3(stopped muon rate)*400 (presentation factor)
+   - to be compared to:
+     - https://github.com/pavel1murat/mu2e-40523.su2020_beam_electrons/blob/main/scripts/plot_stopped_particles.C#L494
 * ------------------------------------------------------------------------------
 * estimate of the number of mu+ reconstructed per hour with nominal collimator position      
 #+begin_src maxima :results output graphics :exports both :tangle yes
