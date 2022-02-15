@@ -54,6 +54,8 @@ int make_proton_pulse_graph(TGraph*& Graph, int PulseNumber, double Scale = 1.) 
 
 
 //-----------------------------------------------------------------------------
+// inital proton pulse distribution comes in 2 ns bins
+//-----------------------------------------------------------------------------
 int make_proton_pulse_hist(TH1F*& Hist, int NPulses, double Scale = 1.) {
   double x[10000], y[10000];
   float  var[100];
@@ -71,8 +73,11 @@ int make_proton_pulse_hist(TH1F*& Hist, int NPulses, double Scale = 1.) {
   int nent = nt_pulse->GetEntries();
 
   if (Hist == nullptr) {
+					// bin = 2ns
     int nb = (400+1695*(NPulses-1))/2;
-    Hist = new TH1F("h_proton_pulse","",nb,-200,200+1695*(NPulses-1));
+					// make sure can rebin by 5 in future
+    nb = (nb/5)*5;
+    Hist = new TH1F("h_proton_pulse","",nb,-200,-200+nb*2);
   }
 
   Hist->Reset();
@@ -82,7 +87,10 @@ int make_proton_pulse_hist(TH1F*& Hist, int NPulses, double Scale = 1.) {
     for (int ientry=0; ientry<nent; ientry++) {
       nt_pulse->GetEntry(ientry);
 
-      double x = var[0]+pulse*1695;
+      double dx = pulse*1695;
+      // if (pulse%2 != 0) dx = dx-5;
+      
+      double x = var[0]+dx;
       double y = var[1]*Scale;
 
       int ib = Hist->FindBin(x);

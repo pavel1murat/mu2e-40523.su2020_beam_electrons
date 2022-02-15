@@ -394,7 +394,7 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     h_ppt->Rebin(5);
     p.hd[0]                = hist_data_t(h_ppt);
     p.hd[0].fNewName       = "";
-    p.hd[0].fLabel         = "proton pulse at production target";
+    p.hd[0].fLabel         = "proton pulse arrival at the production target";
     p.hd[0].fLineColor     = kGray+2;
     p.hd[0].fLineWidth     = 2;
     p.hd[0].fFillStyle     = 3013;
@@ -420,7 +420,7 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     p.hd[1]                = hist_data_t(h_bf);
     p.hd[1].fNewName       = "flash";
     p.hd[1].fRebin         =  1;
-    p.hd[1].fLabel         = Form("beam flash at stopping target (#times%i)",(int) sf_flash);
+    p.hd[1].fLabel         = Form("beam flash arrival at the stopping target (#times%i)",(int) sf_flash);
     p.hd[1].fLabelFontSize = 0.04;
     p.hd[1].fMarkerColor   = kBlue-9;
     p.hd[1].fLineColor     = kBlue-9;
@@ -447,7 +447,7 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     // p.hd[2]                = hist_data_t(catalog,"su2020",dsid2,"spmc_ana.0000","murat_SpmcAna","vdet_1009/time");
     p.hd[2].fNewName       = "pi-";
     p.hd[2].fRebin         =  1;
-    p.hd[2].fLabel         = Form("#pi^{-} at stopping target (#times%i,000)",(int)(sf_pions_vd9/1000));
+    p.hd[2].fLabel         = Form("#pi^{-} arrival at the stopping target (#times%i,000)",(int)(sf_pions_vd9/1000));
     p.hd[2].fLabelFontSize = 0.04;
     p.hd[2].fMarkerColor   = kBlue+2;
     p.hd[2].fLineColor     = kBlue+2;
@@ -473,7 +473,7 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     // p.hd[3]                = hist_data_t(catalog,"su2020",dsid2,"spmc_ana.0000","murat_SpmcAna","vdet_309/time");
     p.hd[3].fNewName       = "mu-";
     p.hd[3].fRebin         =  1;
-    p.hd[3].fLabel         = Form("#mu^{-} at stopping target (#times%i)",(int)sf_muons_vd9);
+    p.hd[3].fLabel         = Form("#mu^{-} arrival at stopping target (#times%i)",(int)sf_muons_vd9);
     p.hd[3].fLabelFontSize = 0.05;
     p.hd[3].fMarkerColor   = kRed+2;
     p.hd[3].fLineColor     = kRed+2;
@@ -498,10 +498,10 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     TH1F* h_bmdt(nullptr);
     make_bound_muon_decay_hist(h_bmdt,1000000,-1,1);
     p.hd[4]                = hist_data_t(h_bmdt);
-    p.hd[4].fLabel         = Form("#mu^{-} decays/captures at stopping target (#times%4.0f)",sf_stopped_muons);
+    p.hd[4].fLabel         = Form("#mu^{-} decays/captures in the stopping target (#times%4.0f)",sf_stopped_muons);
     p.hd[4].fDrawOpt       = "hist";
     p.hd[4].fLineColor     = kRed+2;
-    p.hd[4].fFillStyle     = 3004;
+    p.hd[4].fFillStyle     = 3013;
     p.hd[4].fFillColor     = kRed+2;
     p.hd[4].fOptStat       = 0;
     p.hd[4].fNewName       = "";
@@ -517,7 +517,7 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     p.fXMax                = 2000.;
     p.fYMin                = 1.e-2;
     p.fYMax                = 3.e6;
-    p.fXAxisTitle          = "time, ns";
+    p.fXAxisTitle          = "time (ns)";
     p.fYTitFormat          = "N / 10 ns";
     p.fLabel               = "Mu2e simulation, 1.6 #times 10^{7} protons / pulse";
     p.fLabelFontSize       = 0.045;
