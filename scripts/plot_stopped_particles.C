@@ -384,7 +384,6 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     
     const char* dsid    = "su2020.flsh0s36b0";   // beam flash, 2.5e6, at VD9 with the smeared timing
     const char* dsid2   = "su2020.bmum0s3cb0";   // muon beam,  1e9  , at VD9 with the smeared timing
-
 //-----------------------------------------------------------------------------
 // proton pulse
 //-----------------------------------------------------------------------------

@@ -9,6 +9,8 @@
 // Figure 360 : electrons P>100 MeV/c : momentum at VD9
 // Figure 361 : electrons P>100 MeV/c : time at VD9
 // Figure 362 : electrons P>100 MeV/c : tan_th at VD9
+//
+// su2020_HistDir is defined n .rootrc
 // ----------------------------------------
 
 const char* NoteRepo         = "mu2e-40523.su2020_beam_electrons";
@@ -42,10 +44,12 @@ void init() {
 // in the local .rootrc
 //-----------------------------------------------------------------------------
   const char* notes_dir = gEnv->GetValue("mu2e.NotesDir","./");
+  printf("notes_dir: %s\n",notes_dir);
   gEnv->SetValue("FiguresDir",Form("%s/%s/figures",notes_dir,NoteRepo));
 
   const char* hist_dir  = gEnv->GetValue("mu2e.HistDir" ,"./");
   sprintf(su2020_HistDir,"%s/su2020",hist_dir);
+  printf("su2020_HistDir: %s\n",su2020_HistDir);
 //-----------------------------------------------------------------------------
 // initialize books and datasets
 //-----------------------------------------------------------------------------

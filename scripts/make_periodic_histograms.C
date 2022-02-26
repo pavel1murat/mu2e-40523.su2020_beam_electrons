@@ -25,6 +25,7 @@
 int make_beam_flash_hist(TH1F*& Hist, int FirstPulse = 0, int LastPulse = 1, double Scale = 1.) {
   double x[10000], y[10000];
   float  var[100];
+  char   fn[500];
 
   int npulses = LastPulse-FirstPulse+1;
   
@@ -37,7 +38,9 @@ int make_beam_flash_hist(TH1F*& Hist, int FirstPulse = 0, int LastPulse = 1, dou
 
   Hist->Reset();
 
-  TH1F* hbf = gh1("/projects/mu2e/hist/su2020/su2020.flsh0s36b0.spmc_ana.0000.hist","murat_SpmcAna","vdet_9/time");
+  sprintf(fn,"%s/su2020.flsh0s36b0.spmc_ana.0000.hist",su2020_HistDir);
+
+  TH1F* hbf = gh1(fn,"murat_SpmcAna","vdet_9/time");
 
   int nbx = hbf->GetNbinsX();
   
@@ -78,7 +81,11 @@ int make_muon_vd9_hist(TH1F*& Hist, int FirstPulse = 0, int LastPulse = 0) {
 // make one-pulse histogram for pulse=0
 //-----------------------------------------------------------------------------
   // muon stop time
-  TH1F* h_time = gh1("/projects/mu2e/hist/su2020/su2020.bmum0s3cb0.spmc_ana.0000.hist","murat_SpmcAna","vdet_309/time");
+
+  char fn[500];
+  sprintf(fn,"%s/su2020.bmum0s3cb0.spmc_ana.0000.hist",su2020_HistDir);
+
+  TH1F* h_time = gh1(fn,"murat_SpmcAna","vdet_309/time");
   int nbt = h_time->GetNbinsX();
 
   for (int i=1; i<=nbt; i++) {
@@ -132,7 +139,10 @@ int make_pion_vd9_hist(TH1F*& Hist, int FirstPulse = 0, int LastPulse = 0) {
 // make one-pulse histogram for pulse=0
 //-----------------------------------------------------------------------------
   // muon stop time
-  TH1F* h_time = gh1("/projects/mu2e/hist/su2020/su2020.bmum0s3cb0.spmc_ana.0000.hist","murat_SpmcAna","vdet_1009/time");
+  char fn[500];
+  sprintf(fn,"%s/su2020.bmum0s3cb0.spmc_ana.0000.hist",su2020_HistDir);
+  TH1F* h_time = gh1(fn,"murat_SpmcAna","vdet_1009/time");
+
   int nbt = h_time->GetNbinsX();
 
   for (int i=1; i<=nbt; i++) {
@@ -186,7 +196,9 @@ int make_bound_muon_decay_hist(TH1F*& Hist, int NEvents = 1000000, int FirstPuls
 // make one-pulse histogram for pulse=0
 //-----------------------------------------------------------------------------
   // muon stop time
-  TH1F* h_muon_stop_time = gh1("/projects/mu2e/hist/su2020/su2020.bmum0s31b0.spmc_ana.0000.hist","murat_SpmcAna","simp_603/time");
+  char fn[500];
+  sprintf(fn,"%s/su2020.bmum0s31b0.spmc_ana.0000.hist",su2020_HistDir);
+  TH1F* h_muon_stop_time = gh1(fn,"murat_SpmcAna","simp_603/time");
   
   TRandom3 rn3;
   double   t0, t1;
