@@ -516,7 +516,7 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
     p.fXMax                = 2000.;
     p.fYMin                = 1.e-2;
     p.fYMax                = 3.e6;
-    p.fXAxisTitle          = "time (ns)";
+    p.fXAxisTitle          = "Time (ns)";
     p.fYTitFormat          = "N / 10 ns";
     p.fLabel               = "Mu2e simulation, 1.6 #times 10^{7} protons / pulse";
     p.fLabelFontSize       = 0.045;
@@ -531,7 +531,7 @@ void plot_stopped_particles(int Figure, int Print, const char* Format) {
 
     plot_hist_1d(&p,-1,Format);
 
-    TPaveLabel* pave = new TPaveLabel(640.,1e3,1650,700e3,"signal window");
+    TPaveLabel* pave = new TPaveLabel(640.,1e3,1650,700e3,"delayed live-time window");
     pave->SetBorderSize(1);
     pave->SetLineColor(1); //kYellow-3);
     pave->SetFillColor(kYellow-3);
